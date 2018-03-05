@@ -1,0 +1,24 @@
+#测试自定义注解专用的一个项目，注意，注解与反射是一对夫妻，两方API都很有用
+
+不能使用Annotation：
+{报Jre低版本错误处理：Window->Preferences->Java->Compiler
+将Compiler compliance level设置成5.0或者以上版本就可以了};
+
+元注解:
+	@Inherited//注解会被继承
+	@Documented//文档化
+	@Retention(RetentionPolicy.RUNTIME)//可以被反射获取
+	@Target(ElementType.TYPE)//注解在类头顶的类型
+	
+	
+解析步骤：
+	1.{反射获取到被注解的JavaBean的Class<?>对象};
+	
+	2.{通过Class<?>的
+	--getAnnotation(Class<A> annotationClass)
+	--getAnnotations()
+	方法进行获取Annotation对象};
+	
+	3.{获取到Annotation对象后，可以把它像接口一样调用自己内部的方法，得到注解的配置值
+	还可以自己针对性的加入相应的逻辑};
+	
